@@ -1,17 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <playlist xmlns="http://xspf.org/ns/0/" xmlns:vlc="http://www.videolan.org/vlc/playlist/ns/0/" version="1">
-     <title>Santa Angela Media [ 897649 ]</title>
+     <title>Santa Angela Media [ 832783 ]</title>
      <trackList>
          <track>
-             <location>file:///Z:/TK_1645144932--Final8.mp4</location>
-             <duration>10048</duration>
+             <location>file:///Z:/TK_1644885665-PELEPASAN_TKB.mp4</location>
+             <duration></duration>
              <extension application='http://www.videolan.org/vlc/playlist/0'>
                      <vlc:id>0</vlc:id>
+              </extension>
+         </track>
+         <track>
+             <location>file:///Z:/TK_1644896793-Opening.mp4</location>
+             <duration></duration>
+             <extension application='http://www.videolan.org/vlc/playlist/0'>
+                     <vlc:id>1</vlc:id>
+              </extension>
+         </track>
+         <track>
+             <location>file:///Z:/SD_1644906682-BIARA.mp4</location>
+             <duration></duration>
+             <extension application='http://www.videolan.org/vlc/playlist/0'>
+                     <vlc:id>2</vlc:id>
+              </extension>
+         </track>
+         <track>
+             <location>file:///Z:/SD_1644906781-Mulya_Angela_Bunda_-_SAC.mp4</location>
+             <duration></duration>
+             <extension application='http://www.videolan.org/vlc/playlist/0'>
+                     <vlc:id>3</vlc:id>
+              </extension>
+         </track>
+         <track>
+             <location>file:///Z:/SMA_1644997899-PELEPASAN.mp4</location>
+             <duration></duration>
+             <extension application='http://www.videolan.org/vlc/playlist/0'>
+                     <vlc:id>4</vlc:id>
               </extension>
          </track>
         </trackList>
         <extension application="http://www.videolan.org/vlc/playlist/0">
               <vlc:item tid='0'/>
+              <vlc:item tid='1'/>
+              <vlc:item tid='2'/>
+              <vlc:item tid='3'/>
+              <vlc:item tid='4'/>
 
            </extension>
 </playlist>
