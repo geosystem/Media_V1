@@ -1377,7 +1377,7 @@ function kGrup($bUser){
                                                                 <td>$lsPlay[pl_creator]</td>                                                                
                                                                 <td>                                                                            
                                                                     <a href='?page=".base64_encode('createplaylist')."&act=".base64_encode('detailplaylistvid')."&plcode=".base64_encode($lsPlay['pl_code'])."' class='btn btn-xs btn-outline btn-info' data-toggle='popover' data-content='Data detail playlist video token $lsPlay[pl_code]' title='Data Detail'  data-placement='bottom'><i class='fa fa-list'></i></a>
-                                                                    <a href='?page=".base64_encode('createplaylist')."&act=".base64_encode('hapusplaylistvid')."&plcode=".base64_encode($lsPlay['pl_code'])."' class='btn btn-xs btn-outline btn-info' data-toggle='popover' data-content='Hapus playlist dan file video token $lsPlay[pl_code]' title='Data Detail'  data-placement='bottom'><i class='fa fa-times'></i></a>
+                                                                    <a href='?page=".base64_encode('createplaylist')."&act=".base64_encode('hapusplaylistvid')."&plcode=".base64_encode($lsPlay['pl_code'])."' class='btn btn-xs btn-outline btn-danger' data-toggle='popover' data-content='Hapus playlist dan file video token $lsPlay[pl_code]' title='Data Detail'  data-placement='bottom'><i class='fa fa-times'></i></a>
                                                                 </td>
                                                             </tr>";
                                                         }
@@ -1453,6 +1453,32 @@ function kGrup($bUser){
                                     </div>
                                 </div>";
 
+                        } elseif($act == "hapusplaylistvid") {
+                            echo"
+                            <!-- MODAL BOX  -->
+                            <div class='modal inmodal' id='config' tabindex='-1' role='dialog' aria-hidden='true' data-keyboard='false' data-backdrop='static'>
+                                <div class='modal-dialog'>
+                                    <div class='modal-content animated fadeIn'>
+                                        <div class='modal-header'>                                            
+                                            <i class='fa fa-laptop modal-icon'></i>
+                                            <h4 class='modal-title'>Hapus Playlist</h4>
+                                            <small class='font-bold'>Konfiormasi hapus video playlist kegiatan kampus.</small>
+                                        </div>
+                                        <div class='modal-body'>
+                                            <p><strong>Lorem Ipsum is simply dummy</strong> text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
+                                                printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
+                                                remaining essentially unchanged.</p>
+                                                    <div class='form-group'><label>Sample Input</label> <input type='email' placeholder='Enter your email' class='form-control'></div>
+                                        </div>
+                                        <div class='modal-footer'>
+                                            <button type='button' class='btn btn-white' data-dismiss='modal'>Batal</button>
+                                            <button type='button' class='btn btn-danger'>Hapus Playlist</button>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>";    
+                        
                         }
                     break;
                    
