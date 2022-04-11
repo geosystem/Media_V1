@@ -1454,6 +1454,7 @@ function kGrup($bUser){
                                 </div>";
 
                         } elseif($act == "hapusplaylistvid") {
+                            $plcode = base64_decode($_GET['plcode']);
                             echo"
                             <!-- MODAL BOX  -->
                             <div class='modal inmodal' id='config' tabindex='-1' role='dialog' aria-hidden='true' data-keyboard='false' data-backdrop='static'>
@@ -1462,7 +1463,7 @@ function kGrup($bUser){
                                         <div class='modal-header'>                                            
                                             <i class='fa fa-laptop modal-icon'></i>
                                             <h4 class='modal-title'>Hapus Playlist</h4>
-                                            <small class='font-bold'>Konfiormasi hapus video playlist kegiatan kampus.</small>
+                                            <small class='font-bold'>Konfiormasi hapus video playlist kegiatan kampus. $plcode </small>
                                         </div>
                                         <div class='modal-body'>
                                             <p><strong>Lorem Ipsum is simply dummy</strong> text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
@@ -1472,7 +1473,7 @@ function kGrup($bUser){
                                         </div>
                                         <div class='modal-footer'>
                                             <button type='button' class='btn btn-white' data-dismiss='modal'>Batal</button>
-                                            <button type='button' class='btn btn-danger'>Hapus Playlist</button>
+                                            <button type='button' class='btn btn-danger btn-outline'>Hapus Playlist</button>
                                         </div>
                                         
                                     </div>
