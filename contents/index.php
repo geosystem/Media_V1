@@ -1441,7 +1441,7 @@ function kGrup($bUser){
                                                                 </td>
                                                             </tr>";
                                                         }
-                                                    
+                                                    // kasih catatan aja
                                                     echo"
                                                     </tfoot>
                                                     </table>
