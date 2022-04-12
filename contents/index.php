@@ -953,10 +953,7 @@ function kGrup($bUser){
                                         }, 1000);
                                     });                         
                                 </script>";
-
                             }   
-                                                
-
 
                         } elseif($act == "hapusvideo"){
                             $vidID =  base64_decode(mysqli_real_escape_string($ppdb,$_REQUEST['idvid']));
