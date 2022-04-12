@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <playlist xmlns="http://xspf.org/ns/0/" xmlns:vlc="http://www.videolan.org/vlc/playlist/ns/0/" version="1">
-     <title>Santa Angela Media [ 929378 ]</title>
+     <title>Santa Angela Media [ 925548 ]</title>
      <trackList>
          <track>
-             <location>file:///Z:/TK_1649663170-SMA_1649638067-INTRO_TEST.mp4</location>
-             <duration>53056</duration>
+             <location>file:///Z:/TK_1649732495--Final8.mp4</location>
+             <duration>10048</duration>
              <extension application='http://www.videolan.org/vlc/playlist/0'>
                      <vlc:id>0</vlc:id>
+              </extension>
+         </track>
+         <track>
+             <location>file:///Z:/SD_1649732506-SERVIAM_Explode_1.mp4</location>
+             <duration>11050666666667</duration>
+             <extension application='http://www.videolan.org/vlc/playlist/0'>
+                     <vlc:id>1</vlc:id>
               </extension>
          </track>
         </trackList>
         <extension application="http://www.videolan.org/vlc/playlist/0">
               <vlc:item tid='0'/>
+              <vlc:item tid='1'/>
 
            </extension>
 </playlist>

@@ -838,6 +838,7 @@ function kGrup($bUser){
                                                                 <option value='SD'>SD</option>
                                                                 <option value='SMP'>SMP</option>
                                                                 <option value='SMA'>SMA</option>
+                                                                <option value='YAYASAN'>YAYASAN</option>
                                                             </select>    
                                                         </div>
                                                     </div>
@@ -912,28 +913,49 @@ function kGrup($bUser){
                             $tfile      = time();
                             $vidname    = $unit.'_'.$tfile.'-'.$vid;
                             $newname    = "../video/$vidname";
-                            $copied     = copy($_FILES['fVideo']['tmp_name'], $newname);  
+                            if(!empty($video)){
+                                $copied     = copy($_FILES['fVideo']['tmp_name'], $newname); 
+                                //inser into table
+                                $insVideo = mysqli_query($ppdb, "INSERT INTO med_video (vid_file,vid_unit,vid_uploader,vid_date) VALUES ('$vidname','$unit', '$_SESSION[slogin]', CURRENT_TIMESTAMP())");
 
-                            //inser into table
-                            $insVideo = mysqli_query($ppdb, "INSERT INTO med_video (vid_file,vid_unit,vid_uploader,vid_date) VALUES ('$vidname','$unit', '$_SESSION[slogin]', CURRENT_TIMESTAMP())");
+                                echo "
+                                <script>
+                                    setTimeout(function() {
+                                        swal({
+                                            html  : true,
+                                            title : 'Upload Berhasil',
+                                            text  : 'Upload file video Satuan Pendidikan $unit berhasil.',
+                                            type  : 'success',
+                                            confirmButtonColor : '#1ab394',
+                                            cancelButtonText   : 'Tutup',
+                                            confirmButtonText  : 'Upload lagi',
+                                            showCancelButton   : true
+                                        }, function() {
+                                                window.location = '?page=".base64_encode('uploadvideo')."&act=".base64_encode('formuploadvideo')."';
+                                        }, 1000);
+                                    });                         
+                                </script>";
+                            } else {
+                                echo "
+                                <script>
+                                    setTimeout(function() {
+                                        swal({
+                                            html  : true,
+                                            title : 'Upload Gagal',
+                                            text  : 'Silakan pilih file video yang akan diupload.',
+                                            type  : 'error',
+                                            confirmButtonColor : '#f27474',
+                                            cancelButtonText   : 'Tutup',
+                                            confirmButtonText  : 'Upload lagi',
+                                            showCancelButton   : true
+                                        }, function() {
+                                                window.location = '?page=".base64_encode('uploadvideo')."&act=".base64_encode('formuploadvideo')."';
+                                        }, 1000);
+                                    });                         
+                                </script>";
 
-                            echo "
-                            <script>
-                                setTimeout(function() {
-                                    swal({
-                                        html  : true,
-                                        title : 'Upload Berhasil',
-                                        text  : 'Upload file video Satuan Pendidikan $unit berhasil.',
-                                        type  : 'success',
-                                        confirmButtonColor : '#1ab394',
-                                        cancelButtonText   : 'Tutup',
-                                        confirmButtonText  : 'Upload lagi',
-                                        showCancelButton   : true
-                                    }, function() {
-                                            window.location = '?page=".base64_encode('uploadvideo')."&act=".base64_encode('formuploadvideo')."';
-                                    }, 1000);
-                                });                         
-                            </script>";                   
+                            }   
+                                                
 
 
                         } elseif($act == "hapusvideo"){
@@ -965,7 +987,7 @@ function kGrup($bUser){
                                         swal({
                                         html: true,
                                         title : 'Error Hapus',
-                                        text  : 'Hapus video $chkVid[vid_file] tidak dapat dihapus, status masih <strong class=\"text-danger faa-flash animated\">Idle atau Playing</strong>!',
+                                        text  : 'Hapus video $chkVid[vid_file] tidak dapat dihapus, status masih <strong class=\"text-danger faa-flash animated\">PLAY!</strong>',
                                         type  : 'error',
                                         confirmButtonColor : '#f27474',
                                         confirmButtonText  : 'Tutup',
@@ -1332,8 +1354,6 @@ function kGrup($bUser){
                                 });                         
                             </script>";   
 
-
-
                         } elseif($act == "daftarlistplay") {
                             $cplay = mysqli_query($ppdb, "SELECT * FROM med_playlist ORDER BY pl_id DESC");
                             echo"
@@ -1376,8 +1396,12 @@ function kGrup($bUser){
                                                                 <td>".date( "m/d/Y H:i:s", strtotime($lsPlay['pl_tgl']))."</td>
                                                                 <td>$lsPlay[pl_creator]</td>                                                                
                                                                 <td>                                                                            
-                                                                    <a href='?page=".base64_encode('createplaylist')."&act=".base64_encode('detailplaylistvid')."&plcode=".base64_encode($lsPlay['pl_code'])."' class='btn btn-xs btn-outline btn-info' data-toggle='popover' data-content='Data detail playlist video token $lsPlay[pl_code]' title='Data Detail'  data-placement='bottom'><i class='fa fa-list'></i></a>
-                                                                    <a href='?page=".base64_encode('createplaylist')."&act=".base64_encode('hapusplaylistvid')."&plcode=".base64_encode($lsPlay['pl_code'])."' class='btn btn-xs btn-outline btn-danger' data-toggle='popover' data-content='Hapus playlist dan file video token $lsPlay[pl_code]' title='Data Detail'  data-placement='bottom'><i class='fa fa-times'></i></a>
+                                                                    <a href='?page=".base64_encode('createplaylist')."&act=".base64_encode('detailplaylistvid')."&plcode=".base64_encode($lsPlay['pl_code'])."' class='btn btn-xs btn-outline btn-info' data-toggle='popover' data-content='Data detail playlist video token $lsPlay[pl_code]' title='Data Detail'  data-placement='bottom'><i class='fa fa-list'></i></a>";
+                                                                    if($dUser['usr_grp'] == 0) {
+                                                                        echo"
+                                                                        <a href='?page=".base64_encode('createplaylist')."&act=".base64_encode('hapusplaylistvid')."&plcode=".base64_encode($lsPlay['pl_code'])."' class='btn btn-xs btn-outline btn-danger' data-toggle='popover' data-content='Hapus playlist dan file video token $lsPlay[pl_code]' title='Data Detail'  data-placement='bottom'><i class='fa fa-times'></i></a>";
+                                                                    }        
+                                                                echo"    
                                                                 </td>
                                                             </tr>";
                                                         }
@@ -1461,25 +1485,54 @@ function kGrup($bUser){
                                 <div class='modal-dialog'>
                                     <div class='modal-content animated fadeIn'>
                                         <div class='modal-header'>                                            
-                                            <i class='fa fa-laptop modal-icon'></i>
+                                            <i class='fa fa-youtube-play modal-icon'></i>
                                             <h4 class='modal-title'>Hapus Playlist</h4>
                                             <small class='font-bold'>Konfiormasi hapus video playlist kegiatan kampus. $plcode </small>
                                         </div>
                                         <div class='modal-body'>
-                                            <p><strong>Lorem Ipsum is simply dummy</strong> text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
-                                                printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
-                                                remaining essentially unchanged.</p>
-                                                    <div class='form-group'><label>Sample Input</label> <input type='email' placeholder='Enter your email' class='form-control'></div>
+                                            <p><strong class='text-danger faa-flash animated'>PERHATIAN.!!</strong><br>
+                                            Penghapusan Playlist dengan token <strong>$plcode</strong> akan menghapus seluruh konten video dalam playlist tersebut. Apakah anda yakin akan menghapus Playlist dengan token <strong>$plcode</strong>?</p>                                         
                                         </div>
                                         <div class='modal-footer'>
-                                            <button type='button' class='btn btn-white' data-dismiss='modal'>Batal</button>
-                                            <button type='button' class='btn btn-danger btn-outline'>Hapus Playlist</button>
+                                            <a href='./' class='btn btn-white'>Batal</a>
+                                            <a href='?page=".base64_encode('createplaylist')."&act=".base64_encode('exechapusplaylist')."&plcode=".base64_encode($plcode)."' class='btn btn-danger btn-outline'>Hapus Playlist</a>
                                         </div>
                                         
                                     </div>
                                 </div>
                             </div>";    
                         
+                        } elseif($act == "exechapusplaylist") {
+                            $xplcode = base64_decode($_GET['plcode']);
+                            // get item playlist
+                            $plLoad = mysqli_query($ppdb,"SELECT  * FROM med_playlist WHERE pl_code = '$xplcode'");
+                            $v = 0;
+                            while($rsPlist=mysqli_fetch_array($plLoad)){
+                                $v++;
+                                $fVid = "../video/$rsPlist[pl_file]";  
+                                unlink($fVid);      
+                                //delete data video
+                                $delVid = mysqli_query($ppdb,"DELETE FROM med_video WHERE vid_file = '$rsPlist[pl_file]'");                            
+                            }
+                            // delete playlist di database
+                            $delPl = mysqli_query($ppdb,"DELETE FROM med_playlist WHERE pl_code = '$xplcode'");
+                            echo "
+                            <script>
+                                setTimeout(function() {
+                                    swal({
+                                        html  : true,
+                                        title : 'Berhasil Hapus Playlist',
+                                        text  : 'Penghapusan playlist dengan token <strong>$xplcode</strong> sebanyak $v file video berhasil dilakukan.',
+                                        type  : 'success',
+                                        confirmButtonColor : '#1ab394',
+                                        confirmButtonText  : 'Tutup',
+                                        showCancelButton   : false
+                                    }, function() {
+                                            window.location = './';
+                                    }, 1000);
+                                });                         
+                            </script>";   
+
                         }
                     break;
                    
