@@ -1495,7 +1495,7 @@ function kGrup($bUser){
                                             <a href='?page=".base64_encode('createplaylist')."&act=".base64_encode('exechapusplaylist')."&plcode=".base64_encode($plcode)."' class='btn btn-danger btn-outline'>Hapus Playlist</a>
                                         </div>
                                         
-                                    </div>
+                                    </div
                                 </div>
                             </div>";    
                         
@@ -1529,6 +1529,42 @@ function kGrup($bUser){
                                     }, 1000);
                                 });                         
                             </script>";   
+
+                        }
+                    break;
+                    case 'statusupload' :
+                        include "dashboard.php";
+                        if($lKonfig['kon_upload'] == 0){
+                            $uStat = "TUTUP"; $uVal=1;$iIcn='fa-lock';$uStatus="BUKA";$x='tidak';
+                            $btn = "Buka";
+                        } else {
+                            $uStat = "BUKA"; $uVal=0;$iIcn='fa-unlock';$uStatus="TUTUP";$x='';
+                            $btn = "Tutup";
+                        }
+                        if($act=='modalubahstatus'){
+                            echo"
+                            <!-- MODAL BOX  -->
+                            <div class='modal inmodal' id='config' tabindex='-1' role='dialog' aria-hidden='true' data-keyboard='false' data-backdrop='static'>
+                                <div class='modal-dialog'>
+                                    <div class='modal-content animated fadeIn'>
+                                        <div class='modal-header'>                                            
+                                            <i class='fa fa-cloud modal-icon'></i>
+                                            <h4 class='modal-title'>Status Upload Video</h4>
+                                            <small class='font-bold'>Mengubah status perijinan upload video</small>
+                                        </div>
+                                        <div class='modal-body'>
+                                            <h3><strong class='text-danger faa-flash animated'><i class='fa $iIcn'></i> STATUS UPLOAD $uStat</strong></h3>
+                                            <p>User $x bisa melakukan upload video, apakah anda akan mengubah status upload video menjadi <strong>$uStatus</strong>?</p>                                         
+                                        </div>
+                                        <div class='modal-footer'>
+                                            <a href='./' class='btn btn-white'>Batal</a>
+                                            <a href='?page=".base64_encode('createplaylist')."&act=".base64_encode('exechapusplaylist')."&plcode=".base64_encode($plcode)."' class='btn btn-danger btn-outline'>$btn status upload</a>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>";   
+                        } elseif($act=='execubahstatus') {
 
                         }
                     break;

@@ -14,12 +14,19 @@
   <ul class="nav nav-second-level collapse">
     <?php
         if($dUser['usr_unit'] == 'yay'){
-             echo"<li><a href='?page=".base64_encode('usermanagement')."&act=".base64_encode("listuser")."'>User Management</a></li> ";  
-        } else {echo "";}      
+             echo"<li><a href='?page=".base64_encode('usermanagement')."&act=".base64_encode("listuser")."'>User Management</a></li> ";              
+                           
+        } else {echo "";} 
+        
+        if($dUser['usr_grp'] == 0){
+                        
+          echo"<li><a href='?page=".base64_encode('statusupload')."&act=".base64_encode('modalubahstatus')."'>Status Upload</a></li> ";               
+     } else {echo "";}         
        
     ?>
 
     <li><a href="?page=<?php echo base64_encode('passworduser');?>&act=<?php echo base64_encode("formpassword")?>">Ganti Password</a></li>
+    
   </ul>
 </li>
 <li class="special_link">
