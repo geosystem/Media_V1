@@ -1,25 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <playlist xmlns="http://xspf.org/ns/0/" xmlns:vlc="http://www.videolan.org/vlc/playlist/ns/0/" version="1">
-     <title>Santa Angela Media [ 925548 ]</title>
+     <title>Santa Angela Media [ 547955 ]</title>
      <trackList>
          <track>
-             <location>file:///Z:/TK_1649732495--Final8.mp4</location>
-             <duration>10048</duration>
+             <location>file:///Z:/INTRO_VIDEO.mp4</location>
+             
              <extension application='http://www.videolan.org/vlc/playlist/0'>
-                     <vlc:id>0</vlc:id>
+                     <vlc:id></vlc:id>
               </extension>
          </track>
          <track>
-             <location>file:///Z:/SD_1649732506-SERVIAM_Explode_1.mp4</location>
-             <duration>11050666666667</duration>
+             <location>file:///Z:/TK_1650135382-ELDRIC_2.mp4</location>
+             <duration>4416</duration>
              <extension application='http://www.videolan.org/vlc/playlist/0'>
                      <vlc:id>1</vlc:id>
+              </extension>
+         </track>
+         <track>
+             <location>file:///Z:/SD_1650135403-2022-02-26_08-09-32.mp4</location>
+             <duration>3638467</duration>
+             <extension application='http://www.videolan.org/vlc/playlist/0'>
+                     <vlc:id>2</vlc:id>
+              </extension>
+         </track>
+         <track>
+             <location>file:///Z:/SMA_1650135415-2022-02-26_08-09-32.mp4</location>
+             <duration>3638467</duration>
+             <extension application='http://www.videolan.org/vlc/playlist/0'>
+                     <vlc:id>3</vlc:id>
               </extension>
          </track>
         </trackList>
         <extension application="http://www.videolan.org/vlc/playlist/0">
               <vlc:item tid='0'/>
               <vlc:item tid='1'/>
+              <vlc:item tid='2'/>
+              <vlc:item tid='3'/>
 
            </extension>
 </playlist>

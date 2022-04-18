@@ -1,4 +1,5 @@
 <?php
+$upStatus = $lKonfig['kon_upload'];
 $vidUnit = strtoupper($dUser['usr_unit']);
 if($dUser['usr_unit'] == 'yay'){
     $vFilter = "";
@@ -44,7 +45,8 @@ if($dUser['usr_unit'] == 'yay'){
               <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="p-sm">
-                        <h3>Video Kegiatan Satuan Pendidikan</h3>                     
+                        <h3>Video Kegiatan Satuan Pendidikan <a href="./" class="btn btn-primary btn-sm pull-right"><i class="fa fa-refresh"></i> Refresh Page</a></h3> 
+                                            
                     </div>
                     
                     <div class="ibox-content">

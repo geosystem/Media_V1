@@ -92,6 +92,7 @@ function getToken($length)
     return $token;
 }
 
+
 function VidToken($length)
 {
     $token = "";

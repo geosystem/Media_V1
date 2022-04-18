@@ -814,10 +814,7 @@ function kGrup($bUser){
                     break; 
                     case "uploadvideo" :
                         include "dashboard.php";
-                        
                         if($act == "formuploadvideo"){
-                            
-                            if($upStatus == 1 OR $dUser['usr_unit'] == 'yay') {
                             echo"
                             <!-- MODAL BOX  -->
                             <div class='modal inmodal' id='config' tabindex='-1' role='dialog' aria-hidden='true' data-keyboard='false' data-backdrop='static'>
@@ -908,22 +905,6 @@ function kGrup($bUser){
                                     </div>
                                 </div>
                             </div>";  
-                            } else {
-                                echo "
-                                <script>
-                                    setTimeout(function() {
-                                        swal({
-                                        title : 'Error Upload',
-                                        text  : 'Sesi upload video sedang tidak aktif, silakan hubungi admin untuk mengaktifkan sesi upload video!',
-                                        type  : 'error',
-                                        confirmButtonColor : '#f27474',
-                                        confirmButtonText  : 'Ulangi',
-                                        }, function() {
-                                            window.location = './';
-                                        }, 1000);
-                                    });                         
-                                </script>";
-                            }
                         } elseif($act == 'simpanvideo'){
                             // Uoload poto galeri
                             $unit       = mysqli_real_escape_string($ppdb, $_POST['unit']);                            
@@ -1302,29 +1283,14 @@ function kGrup($bUser){
                             fwrite($file_handle, "\n");
                             fwrite($file_handle, '     <trackList>');
                             fwrite($file_handle, "\n");
-                            // Track video intro
-                            fwrite($file_handle, '         <track>');
-                            fwrite($file_handle, "\n");
-                            fwrite($file_handle, "             <location>file:///Z:/INTRO_VIDEO.mp4</location>");
-                            fwrite($file_handle, "\n");
-                            fwrite($file_handle, "             ");
-                            fwrite($file_handle, "\n");                            
-                            fwrite($file_handle, "             <extension application='http://www.videolan.org/vlc/playlist/0'>");                            
-                            fwrite($file_handle, "\n");                            
-                            fwrite($file_handle, "                     <vlc:id>$pit</vlc:id>");                            
-                            fwrite($file_handle, "\n");                            
-                            fwrite($file_handle, "              </extension>");                            
-                            fwrite($file_handle, "\n");                            
-                            fwrite($file_handle, '         </track>');
-                            fwrite($file_handle, "\n");
                             // Load data video from db
                             $jm = 0;
-                            $pit = 0;
+                            $pit = -1;
                             $playList = mysqli_query($ppdb, "SELECT * FROM med_video WHERE vid_stat = 0"); 
                             while($lPlay = mysqli_fetch_array($playList)){
                                 $jm++;
                                 $pit++;
-                                // INSERT PLAYLIST ITEM INTO DB Playlist
+                                // INSERT PLAYLIST ITEM INTO DB
                                 $pInsert = mysqli_query($ppdb,"INSERT INTO med_playlist (pl_file,pl_tgl,pl_code,pl_creator) VALUES ('$lPlay[vid_file]',CURRENT_TIMESTAMP(),'$vTkn','$dUser[usr_login]')");
                                 $vFile = $lPlay['vid_file']; 
                                 $vLoc  = "../video/"; 
@@ -1350,12 +1316,9 @@ function kGrup($bUser){
                             fwrite($file_handle, "\n");
                             fwrite($file_handle, '        <extension application="http://www.videolan.org/vlc/playlist/0">');
                             fwrite($file_handle, "\n");
-                            // Item Video Intro index
-                            fwrite($file_handle, "              <vlc:item tid='0'/>");
-                                fwrite($file_handle, "\n");
                             // Create List item
                             $playItem = mysqli_query($ppdb, "SELECT vid_id FROM med_video WHERE vid_stat = 0");  
-                            $it = 0;
+                            $it = -1;
                             while($rplayItem = mysqli_fetch_array($playItem)){
                                 $it++;
                                 fwrite($file_handle, "              <vlc:item tid='$it'/>");
